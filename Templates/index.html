@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Something</title>
+    <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="form">
+        <form hx-post="/new-message" hx-target=".messages" hx-swap="beforeend">
+            <label for="message">Chat</label>
+            <label for="user">User</label>
+            <input type="text" name="message" id="message" placeholder="Enter your text here">
+            <input type="text" name="username" id="user" placeholder="Enter your username here">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="recieved">
+        <ul class="messages">
+            {{range .Messages}}
+            <li >
+                {{.User}} <p></p>
+                {{.Text}}-{{.Added}}
+            </li>
+            {{end}}
+        </ul>
+    </div>
+</body>
+</html>
